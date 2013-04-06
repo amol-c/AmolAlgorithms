@@ -1,6 +1,7 @@
 package com.algos.sorting;
 
-
+import com.algos.sorting.*;
+import com.algos.utils.SortingUtils;
 
 
 public class SelectionSort {
@@ -8,11 +9,11 @@ public class SelectionSort {
 	
 	
 	
-	public static int[] sort(int[] a)
+	public static Comparable[] sort(Comparable[] a)
 	{
 		
-		int min=0;
-		
+		//int min=0;
+		Comparable min = null;
 		int swapIndex=0;
 		
 		for (int i = 0; i < a.length; i++) {
@@ -20,7 +21,7 @@ public class SelectionSort {
 			min=a[i];
 			
 			for (int j = i+1; j < a.length ; j++) {
-				if(min>a[j]){
+				if(!SortingUtils.less(min,a[j])){
 					min=a[j];
 					swapIndex=j;
 				}
@@ -29,7 +30,7 @@ public class SelectionSort {
 			}
 			
 			if(a[i]!=min){
-			a=swap(i,swapIndex, a); 
+			a=SortingUtils.swap(i,swapIndex, a); 
 			}
 		}
 		
@@ -40,32 +41,22 @@ public class SelectionSort {
 		
 	
 	
-	public static int[] swap(int i,int j,int[] a)
-	{
-			int temp = a[i];
-			a[i]=a[j];
-			a[j]=temp;
-		return a;
-		
-	}
 	
 	
-	public static void log(int [] a)
-	{
-		for (int i = 0; i < a.length; i++) {
-			 System.out.println( a[i] + ", ");
-		}
-	}
 	
 	
 	public static void main(String[] args) {
 		
 		
-		int a[] = {3,4,1,2,7,4,2,0,3};
+		Comparable a[] = {9,8,7,6,5,4,3,2,1};
+		Comparable b[]={'C','Q','W','V','A','L','X'};
 		
 	     a =   SelectionSort.sort(a);
+		b=SelectionSort.sort(b);
 		
-	    log(a);
+	    SortingUtils.log(a);
+	    
+	    SortingUtils.log(b);
 	}
 	
 }
